@@ -21,7 +21,6 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-  expansion_widget: ^0.0.1-nullsafety.0
   sweetalert: ^0.0.1
   sort_price: ^0.0.2
   color_thief_flutter: ^1.0.2
