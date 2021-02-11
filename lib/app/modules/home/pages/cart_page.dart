@@ -269,7 +269,7 @@ class _ButtonWidget extends StatelessWidget {
         onPress: (bool isConfirm) {
           
         if (isConfirm) {
-          this.bloc.add(FetchProducts());
+          this.bloc.add(UploadData());
           SweetAlert.show(
             context,
             style: SweetAlertStyle.success,
