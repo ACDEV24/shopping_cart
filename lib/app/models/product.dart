@@ -5,7 +5,6 @@ class Product {
   final String name;
   final String picture;
   final String carsID;
-  final String description;
   final int price;
   final int carQuantity;
 
@@ -14,7 +13,6 @@ class Product {
     this.active = false,
     this.name = '',
     this.picture = '',
-    this.description = '',
     this.carsID = '',
     this.price = 0,
     this.carQuantity = 0,
@@ -25,7 +23,6 @@ class Product {
     bool active,
     String name,
     String picture,
-    String description,
     String carsID,
     int price,
     int carQuantity,
@@ -34,20 +31,26 @@ class Product {
     active: active ?? this.active,
     name: name ?? this.name,
     picture: picture ?? this.picture,
-    description: description ?? this.description,
     carsID: carsID ?? this.carsID,
     price: price ?? this.price,
     carQuantity: carQuantity ?? this.carQuantity,
   );
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
-    id:           (json['id']           == null) ? ''     : json['id'],
-    active:       (json['active']       == null) ? false  : json['active'],
-    name:         (json['name']         == null) ? ''     : json['name'],
-    picture:      (json['picture']      == null) ? ''     : json['picture'],
-    description:  (json['description']  == null) ? ''     : json['description'],
-    price:        (json['price']        == null) ? 0      : json['price'],
+    id:       (json['id']       == null) ? '' : json['id'],
+    active:   (json['active']   == null) ? false : json['active'],
+    name:     (json['name']     == null) ? '' : json['name'],
+    picture:  (json['picture']  == null) ? '' : json['picture'],
+    price:    (json['price']    == null) ? 0 : json['price'],
   );
+
+  Map<String, dynamic> toJson() => {
+    'id': id == null ? null : id,
+    'active': active == null ? null : active,
+    'name': name == null ? null : name,
+    'picture': picture == null ? null : picture,
+    'price': price == null ? null : price,
+  };
 
   int get totalPrice => this.price * this.carQuantity;
 }
