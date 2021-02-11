@@ -350,6 +350,7 @@ class _AddToCarWidget extends StatelessWidget {
             ),
           ),
           onTap: () {
+            if(this.product.carQuantity == this.product.stock) return;
             final Product product = this.product.copyWith(
               carQuantity: this.product.carQuantity + 1
             );

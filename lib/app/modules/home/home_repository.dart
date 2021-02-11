@@ -47,7 +47,8 @@ class HomeRepository {
         'active': value['active'],
         'name': value['name'],
         'picture': value['picture'],
-        'price': value['price']
+        'price': value['price'],
+        'stock': value['stock'],
       };
 
       final Product product = Product.fromJson(json);
@@ -110,6 +111,35 @@ class HomeRepository {
     return {
       'ok': true,
       'id': response.data['name']
+    };
+  }
+
+  Future<Map<String, dynamic>> updateProcuct(String id, Map<String, dynamic> body) async {
+
+    Response response;
+
+    final String data = json.encode(body);
+
+    try {
+      response = await this.dio.put(
+        '/products/$id.json',
+        data: data
+      );
+    } on DioError catch (e) {
+      if(shouldRetry(e)) return noInternetMessage;
+      return internalErrorMessage;
+    }
+
+    if(response.statusCode != 200 && response.statusCode != 201) return {
+      'ok': false,
+      'message': translateMessage(response.data['message'])
+    };
+
+    final Product product = Product.fromJson(response.data);
+
+    return {
+      'ok': true,
+      'product': product
     };
   }
 

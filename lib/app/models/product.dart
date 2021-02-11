@@ -6,6 +6,7 @@ class Product {
   final String picture;
   final String carsID;
   final int price;
+  final int stock;
   final int carQuantity;
 
   Product({
@@ -15,6 +16,7 @@ class Product {
     this.picture = '',
     this.carsID = '',
     this.price = 0,
+    this.stock = 0,
     this.carQuantity = 0,
   });
 
@@ -25,6 +27,7 @@ class Product {
     String picture,
     String carsID,
     int price,
+    int stock,
     int carQuantity,
   }) => Product(
     id: id ?? this.id,
@@ -33,6 +36,7 @@ class Product {
     picture: picture ?? this.picture,
     carsID: carsID ?? this.carsID,
     price: price ?? this.price,
+    stock: stock ?? this.stock,
     carQuantity: carQuantity ?? this.carQuantity,
   );
 
@@ -42,15 +46,8 @@ class Product {
     name:     (json['name']     == null) ? '' : json['name'],
     picture:  (json['picture']  == null) ? '' : json['picture'],
     price:    (json['price']    == null) ? 0 : json['price'],
+    stock:    (json['stock']    == null) ? 0 : json['stock'],
   );
-
-  Map<String, dynamic> toJson() => {
-    'id': id == null ? null : id,
-    'active': active == null ? null : active,
-    'name': name == null ? null : name,
-    'picture': picture == null ? null : picture,
-    'price': price == null ? null : price,
-  };
 
   int get totalPrice => this.price * this.carQuantity;
 }

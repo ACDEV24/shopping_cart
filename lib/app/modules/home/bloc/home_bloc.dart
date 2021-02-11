@@ -187,6 +187,19 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   Future<HomeState> uploadProducts() async {
     await this.repository.endSale(this.cartId);
+    for(Product p in this.state.cart) {
+      await this.repository.updateProcuct(
+        p.id,
+        {
+          'active': p.active,
+          'name': p.name,
+          'picture': p.picture,
+          'price': p.price,
+          'stock': p.stock - p.carQuantity,
+        }
+      );
+    }
+    
     return this.fetchProducts();
   }
 
