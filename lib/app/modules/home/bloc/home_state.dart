@@ -12,6 +12,7 @@ class HomeState extends IHomeState {
   final List<Product> cart;
   final int index;
   final bool isLoading;
+
   HomeState({
     this.products,
     this.filteredProducts,

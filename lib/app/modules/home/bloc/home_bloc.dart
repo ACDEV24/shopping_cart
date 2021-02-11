@@ -171,18 +171,17 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
     if(!response['ok']) {
       return ErrorFetchingProducts(response['message']);
-    } else {
-
-      final List<Product> products = response['products'];
-
-      return this.state.copyWith(
-        products: products,
-        filteredProducts: products,
-        cart: [],
-        index: 0,
-        isLoading: false
-      );
     }
+
+    final List<Product> products = response['products'];
+
+    return this.state.copyWith(
+      products: products,
+      filteredProducts: products,
+      cart: [],
+      index: 0,
+      isLoading: false
+    );
   }
 
   Future<HomeState> uploadProducts() async {
